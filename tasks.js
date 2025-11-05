@@ -20,7 +20,23 @@ async function saveTasks(tasks) {
 }
 
 export async function addTask(taskDescription) {
-  console.log('Fitur [add] belum diimplementasi.');
+  const tasks = await loadTasks();
+  
+  let newId = 1;
+  if (tasks.length > 0) {
+    newId = Math.max(...tasks.map(t => t.id)) + 1;
+  }
+  
+  const newTask = {
+    id: newId,
+    description: taskDescription,
+    status: 'pending'
+  };
+  
+  tasks.push(newTask);
+  await saveTasks(tasks);
+  
+  console.log(`[+] Tugas ditambahkan: "${taskDescription}" (ID: ${newId})`);
 }
 
 export async function listTasks() {
