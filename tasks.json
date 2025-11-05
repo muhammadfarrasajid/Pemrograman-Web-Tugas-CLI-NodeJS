@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": 1,
+    "description": "Belajar Node.js async/await",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "description": "Mengerjakan tugas CLI",
+    "status": "pending"
+  }
+]
