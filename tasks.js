@@ -57,7 +57,23 @@ export async function listTasks() {
 }
 
 export async function markTaskDone(taskId) {
-  console.log('Fitur [done] belum diimplementasi.');
+  const tasks = await loadTasks();
+  const taskIndex = tasks.findIndex(t => t.id === taskId);
+  
+  if (taskIndex === -1) {
+    console.error('Error: Tugas dengan ID tersebut tidak ditemukan.');
+    return;
+  }
+  
+  if (tasks[taskIndex].status === 'done') {
+    console.log(`[!] Tugas "${tasks[taskIndex].description}" sudah selesai.`);
+    return;
+  }
+  
+  tasks[taskIndex].status = 'done';
+  await saveTasks(tasks);
+  
+  console.log(`[✓] Tugas ditandai selesai: "${tasks[taskIndex].description}"`);
 }
 
 export async function removeTask(taskId) {
