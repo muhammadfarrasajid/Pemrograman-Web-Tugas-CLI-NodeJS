@@ -77,5 +77,16 @@ export async function markTaskDone(taskId) {
 }
 
 export async function removeTask(taskId) {
-  console.log('Fitur [remove] belum diimplementasi.');
+  const tasks = await loadTasks();
+  const taskIndex = tasks.findIndex(t => t.id === taskId);
+
+  if (taskIndex === -1) {
+    console.error('Error: Tugas dengan ID tersebut tidak ditemukan.');
+    return;
+  }
+
+  const removedTask = tasks.splice(taskIndex, 1);
+  await saveTasks(tasks);
+  
+  console.log(`[-] Tugas dengan ID ${taskId} ("${removedTask[0].description}") telah dihapus.`);
 }
