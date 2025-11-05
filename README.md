@@ -33,6 +33,7 @@ Gunakan `node index.js` diikuti dengan perintah yang diinginkan.
 ### Menambah Tugas Baru
 
 Gunakan tanda kutip jika tugas mengandung spasi.
+
 node index.js add "Mengerjakan tugas CLI"
 
 ### Melihat Daftar Tugas
@@ -42,11 +43,13 @@ node index.js list
 ### Menandai Selesai
 
 node index.js done [ID_TUGAS]
+
 Contoh:
 node index.js done 1
 
 ### Menghapus Tugas
 
 node index.js remove [ID_TUGAS]
+
 Contoh:
 node index.js remove 1
