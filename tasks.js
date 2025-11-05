@@ -40,7 +40,20 @@ export async function addTask(taskDescription) {
 }
 
 export async function listTasks() {
-  console.log('Fitur [list] belum diimplementasi.');
+  const tasks = await loadTasks();
+  
+  if (tasks.length === 0) {
+    console.log('Tidak ada tugas untuk ditampilkan.');
+    return;
+  }
+  
+  console.log('--- DAFTAR TUGAS ---');
+  tasks.forEach(task => {
+    const statusIcon = task.status === 'done' ? '✓' : '○';
+    const statusText = task.status === 'done' ? '(Selesai)' : '';
+    console.log(`[${task.id}] ${statusIcon} ${task.description} ${statusText}`);
+  });
+  console.log('--------------------');
 }
 
 export async function markTaskDone(taskId) {
